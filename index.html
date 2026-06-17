@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="随想、白菜、HCAI 中转站推广链接列表" />
+    <title>中转站导航 | 随想 / 白菜 / HCAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ecfdf5;
+        --surface: #ffffff;
+        --surface-2: #f6fbf8;
+        --text: #0f172a;
+        --muted: #5b6b74;
+        --border: #d9ece4;
+        --primary: #059669;
+        --primary-2: #10b981;
+        --accent: #d97706;
+        --danger: #dc2626;
+        --ring: #059669;
+        --shadow: 0 0 0 1px rgba(15, 23, 42, 0.04);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Atkinson Hyperlegible", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--text);
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+          linear-gradient(90deg, rgba(5, 150, 105, 0.05) 1px, transparent 1px),
+          linear-gradient(rgba(5, 150, 105, 0.05) 1px, transparent 1px),
+          var(--bg);
+        background-size: auto, 28px 28px, 28px 28px, auto;
+        min-height: 100dvh;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      .shell {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .planet-stage {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .planet-stage canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+        opacity: 0;
+        animation: planetReveal 900ms ease forwards;
+      }
+
+      .planet-fallback {
+        position: absolute;
+        width: min(58vw, 620px);
+        aspect-ratio: 1;
+        right: -12vw;
+        top: 58px;
+        border-radius: 999px;
+        background:
+          radial-gradient(circle at 38% 34%, rgba(255, 255, 255, 0.88), transparent 0 13%),
+          radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.28), transparent 0 44%),
+          radial-gradient(circle at 50% 50%, rgba(5, 150, 105, 0.22), transparent 0 62%),
+          transparent;
+        filter: blur(0.2px);
+      }
+
+      @keyframes planetReveal {
+        from {
+          opacity: 0;
+          transform: scale(0.985);
+        }
+
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 10px 0 22px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+        display: grid;
+        place-items: center;
+        background: var(--primary);
+        color: #fff;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+      }
+
+      .brand-text {
+        min-width: 0;
+      }
+
+      .brand-text strong {
+        display: block;
+        font-size: 18px;
+        line-height: 1.1;
+      }
+
+      .brand-text span {
+        display: block;
+        margin-top: 3px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .pill,
+      .ghost-btn,
+      .primary-btn,
+      .chip,
+      .tag {
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        transition: 180ms ease;
+      }
+
+      .pill,
+      .ghost-btn,
+      .primary-btn,
+      .chip {
+        min-height: 44px;
+        padding: 0 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        cursor: pointer;
+        background: var(--surface);
+      }
+
+      .pill:hover,
+      .ghost-btn:hover,
+      .chip:hover,
+      .link-card:hover {
+        border-color: rgba(5, 150, 105, 0.38);
+        transform: translateY(-1px);
+      }
+
+      .pill:focus-visible,
+      .ghost-btn:focus-visible,
+      .primary-btn:focus-visible,
+      .chip:focus-visible,
+      .link-card:focus-visible,
+      input:focus-visible {
+        outline: 3px solid color-mix(in srgb, var(--ring) 35%, white);
+        outline-offset: 2px;
+      }
+
+      .hero {
+        padding: 18px 0 12px;
+        min-height: min(720px, calc(100dvh - 74px));
+        display: grid;
+        align-items: center;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 18px;
+        align-items: stretch;
+      }
+
+      .hero-main,
+      .hero-side,
+      .section,
+      .note {
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(6px);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-main {
+        padding: 28px;
+        animation: contentIn 560ms ease both;
+      }
+
+      .hero-side {
+        animation: contentIn 700ms ease 90ms both;
+      }
+
+      @keyframes contentIn {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(5, 150, 105, 0.1);
+        color: var(--primary);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      h1 {
+        margin: 14px 0 10px;
+        font-size: clamp(30px, 4vw, 48px);
+        line-height: 1.02;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 58ch;
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.65;
+        color: var(--muted);
+      }
+
+      .searchbar {
+        margin-top: 22px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        padding: 10px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+      }
+
+      .searchbar svg {
+        flex: 0 0 auto;
+        color: var(--muted);
+      }
+
+      .searchbar input {
+        border: 0;
+        outline: 0;
+        width: 100%;
+        background: transparent;
+        color: var(--text);
+        min-height: 24px;
+      }
+
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .chip.is-active {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+      }
+
+      .hero-side {
+        padding: 22px;
+        display: grid;
+        gap: 12px;
+        align-content: start;
+      }
+
+      .stat {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+      }
+
+      .metric-line {
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .metric-line strong {
+        color: var(--text);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 18px;
+      }
+
+      .stat span {
+        display: block;
+        margin-top: 4px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--primary);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--primary-2);
+        box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.14);
+      }
+
+      .section {
+        margin-top: 18px;
+        padding: 22px;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: end;
+        margin-bottom: 16px;
+      }
+
+      .section-head h2 {
+        margin: 0;
+        font-size: 22px;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .featured {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 16px;
+      }
+
+      .link-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: 18px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        transition: 180ms ease;
+      }
+
+      .link-card.featured-card {
+        border-color: rgba(5, 150, 105, 0.3);
+        background:
+          linear-gradient(180deg, rgba(5, 150, 105, 0.06), rgba(255, 255, 255, 0.92)),
+          var(--surface);
+      }
+
+      .link-card.accent-card {
+        border-color: rgba(217, 119, 6, 0.28);
+        background:
+          linear-gradient(180deg, rgba(217, 119, 6, 0.07), rgba(255, 255, 255, 0.92)),
+          var(--surface);
+      }
+
+      .link-card.cool-card {
+        border-color: rgba(14, 116, 144, 0.22);
+        background:
+          linear-gradient(180deg, rgba(14, 116, 144, 0.06), rgba(255, 255, 255, 0.92)),
+          var(--surface);
+      }
+
+      .card-top {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .iconbox {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        background: rgba(5, 150, 105, 0.1);
+        color: var(--primary);
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+      }
+
+      .title-wrap {
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+
+      .title-wrap h3 {
+        margin: 0 0 6px;
+        font-size: 18px;
+      }
+
+      .title-wrap p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+
+      .badge {
+        flex: 0 0 auto;
+        padding: 7px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        border: 1px solid var(--border);
+        background: var(--surface-2);
+        color: var(--muted);
+      }
+
+      .badge.primary {
+        color: var(--primary);
+        background: rgba(5, 150, 105, 0.1);
+        border-color: rgba(5, 150, 105, 0.18);
+      }
+
+      .badge.warn {
+        color: var(--accent);
+        background: rgba(217, 119, 6, 0.1);
+        border-color: rgba(217, 119, 6, 0.18);
+      }
+
+      .badge.cool {
+        color: #0e7490;
+        background: rgba(14, 116, 144, 0.1);
+        border-color: rgba(14, 116, 144, 0.18);
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tag {
+        padding: 7px 10px;
+        font-size: 12px;
+        background: #fff;
+        color: var(--muted);
+      }
+
+      .card-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: auto;
+      }
+
+      .primary-btn {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+      }
+
+      .primary-btn:hover {
+        background: #047857;
+      }
+
+      .ghost-btn {
+        color: var(--text);
+      }
+
+      .ghost-btn:disabled {
+        cursor: not-allowed;
+        opacity: 0.55;
+        transform: none;
+      }
+
+      .directory {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .price-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      .price-card {
+        padding: 14px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.74);
+      }
+
+      .price-card span {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .price-card strong {
+        display: block;
+        margin-top: 5px;
+        font-size: 16px;
+      }
+
+      .note {
+        margin: 18px 0 8px;
+        padding: 16px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .note strong {
+        color: var(--text);
+      }
+
+      .footer {
+        padding: 10px 0 28px;
+        color: var(--muted);
+        font-size: 13px;
+        text-align: center;
+      }
+
+      @media (max-width: 960px) {
+        .hero-grid,
+        .featured {
+          grid-template-columns: 1fr;
+        }
+
+        .directory {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .price-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .shell {
+          padding: 14px;
+        }
+
+        .topbar {
+          align-items: start;
+          flex-direction: column;
+        }
+
+        .nav-actions {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .hero-main,
+        .hero-side,
+        .section {
+          padding: 18px;
+        }
+
+        .directory {
+          grid-template-columns: 1fr;
+        }
+
+        .section-head {
+          align-items: start;
+          flex-direction: column;
+        }
+
+        .card-actions .primary-btn,
+        .card-actions .ghost-btn {
+          flex: 1 1 140px;
+        }
+
+        .planet-fallback {
+          width: 520px;
+          right: -260px;
+          top: 86px;
+          opacity: 0.72;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 1ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+          transition-duration: 1ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="planet-stage" aria-hidden="true">
+      <div class="planet-fallback"></div>
+    </div>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="返回顶部">
+          <span class="brand-mark" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 12h16" />
+              <path d="m12 4 8 8-8 8" />
+            </svg>
+          </span>
+          <span class="brand-text">
+            <strong>中转站导航</strong>
+            <span>随想 / 白菜 / HCAI</span>
+          </span>
+        </a>
+
+        <div class="nav-actions">
+          <a class="pill" href="#featured">主推入口</a>
+          <a class="ghost-btn" href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </header>
+
+      <section class="hero" id="top">
+        <div class="hero-grid">
+          <div class="hero-main">
+            <span class="eyebrow">
+              <span class="dot" aria-hidden="true"></span>
+              随想为主推入口
+            </span>
+            <h1>中转站推广入口</h1>
+            <p class="lead">
+              当前只主推随想注册链接，白菜和 HCAI 作为备用入口保留。后续会加入测试接口，
+              用来检测中转站的模型、价格、稳定性和“成分纯度”。
+            </p>
+
+            <div class="searchbar" role="search" aria-label="站内搜索">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" />
+                <path d="m20 20-3.5-3.5" />
+              </svg>
+              <input type="search" placeholder="搜索名称、标签、说明..." aria-label="搜索链接" />
+            </div>
+
+            <div class="filters" aria-label="快速筛选">
+              <button class="chip is-active" type="button">全部</button>
+              <button class="chip" type="button">推荐</button>
+              <button class="chip" type="button">OpenAI</button>
+              <button class="chip" type="button">绘图</button>
+              <button class="chip" type="button">活动</button>
+            </div>
+          </div>
+
+          <aside class="hero-side" aria-label="页面状态">
+            <div class="stat">
+              <div>
+                <strong>1 个主推入口</strong>
+                <span>随想作为主要转化链接</span>
+              </div>
+              <span class="status">在线</span>
+            </div>
+            <div class="stat">
+              <div>
+                <strong>主推随想</strong>
+                <span>支持 OpenAI 相关模型</span>
+              </div>
+              <span class="status">轻量</span>
+            </div>
+            <div class="stat">
+              <div>
+                <strong>纯度测试待接入</strong>
+                <span>后续添加测试接口和评分</span>
+              </div>
+              <span class="status">可扩展</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="featured">
+        <div class="section-head">
+          <div>
+            <h2>主推入口</h2>
+            <p>把最重要的动作放在最前面，减少犹豫。</p>
+          </div>
+          <a class="pill" href="https://sui-xiang.com/register?aff=484236T24439" target="_blank" rel="noreferrer">立即打开</a>
+        </div>
+
+        <div class="featured">
+          <div class="link-card featured-card">
+            <div class="card-top">
+              <div class="iconbox" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 12h16" />
+                  <path d="m12 4 8 8-8 8" />
+                </svg>
+              </div>
+              <span class="badge primary">主推</span>
+            </div>
+            <div class="title-wrap">
+              <h3>sui-xiang.com 注册入口</h3>
+              <p>适合作为首屏主入口展示。按钮清晰、层级明确，方便访客快速跳转注册。</p>
+            </div>
+            <div class="tags">
+              <span class="tag">推荐</span>
+              <span class="tag">直达</span>
+              <span class="tag">转化入口</span>
+            </div>
+            <div class="card-actions">
+              <a class="primary-btn" href="https://sui-xiang.com/register?aff=484236T24439" target="_blank" rel="noreferrer">立即注册</a>
+              <button class="ghost-btn" type="button" data-copy="https://sui-xiang.com/register?aff=484236T24439">
+                复制链接
+              </button>
+            </div>
+          </div>
+
+          <div class="link-card accent-card">
+            <div class="card-top">
+              <div class="iconbox" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14" />
+                  <path d="M12 5v14" />
+                </svg>
+              </div>
+              <span class="badge warn">备用</span>
+            </div>
+            <div class="title-wrap">
+              <h3>备用入口：白菜</h3>
+              <p>个人站长运营，经历多波风控后依旧坚挺。当前仅作为备用入口展示，后续接入测试后再显示纯度评分。</p>
+            </div>
+            <div class="tags">
+              <span class="tag">个人站长</span>
+              <span class="tag">1:1 充值</span>
+              <span class="tag">图价便宜</span>
+            </div>
+            <div class="price-grid">
+              <div class="price-card">
+                <span>内生图</span>
+                <strong>0.06 分 / 1K 图</strong>
+              </div>
+              <div class="price-card">
+                <span>4K 图</span>
+                <strong>0.1 分 / 4K</strong>
+              </div>
+              <div class="price-card">
+                <span>充值比例</span>
+                <strong>1 : 1</strong>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="ghost-btn" href="https://api.baicai798.cn/register?aff=EAYDW8J2Q8A9" target="_blank" rel="noreferrer">打开备用</a>
+              <button class="ghost-btn" type="button" data-copy="https://api.baicai798.cn/register?aff=EAYDW8J2Q8A9">复制链接</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="链接目录">
+        <div class="section-head">
+          <div>
+            <h2>备用与测试计划</h2>
+            <p>主推以随想为准，备用入口只保留跳转；测试接口会在后续版本接入。</p>
+          </div>
+          <span class="badge">备用入口 / 纯度测试</span>
+        </div>
+
+        <div class="directory">
+          <article class="link-card cool-card">
+            <div class="card-top">
+              <div class="iconbox" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 7h16" />
+                  <path d="M4 12h16" />
+                  <path d="M4 17h10" />
+                </svg>
+              </div>
+              <span class="badge cool">测试计划</span>
+            </div>
+            <div class="title-wrap">
+              <h3>随想纯度测试</h3>
+              <p>后续添加测试接口，检测模型响应、倍率、可用性、价格映射和疑似套壳情况，形成中转站成分纯度评分。</p>
+            </div>
+            <div class="tags">
+              <span class="tag">待接入</span>
+              <span class="tag">纯度评分</span>
+              <span class="tag">稳定性</span>
+            </div>
+            <div class="price-grid">
+              <div class="price-card">
+                <span>检测方向</span>
+                <strong>模型可用性</strong>
+              </div>
+              <div class="price-card">
+                <span>检测方向</span>
+                <strong>价格倍率</strong>
+              </div>
+              <div class="price-card">
+                <span>检测方向</span>
+                <strong>稳定性</strong>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="primary-btn" href="https://sui-xiang.com/register?aff=484236T24439" target="_blank" rel="noreferrer">打开主推</a>
+              <button class="ghost-btn" type="button" disabled>测试待上线</button>
+            </div>
+          </article>
+
+          <article class="link-card">
+            <div class="card-top">
+              <div class="iconbox" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 12h18" />
+                  <path d="m12 3 9 9-9 9" />
+                </svg>
+              </div>
+              <span class="badge primary">备用</span>
+            </div>
+            <div class="title-wrap">
+              <h3>备用入口：HCAI</h3>
+              <p>团体多人运营，经常做活动，星期四有 1000 刀免费薅羊毛池子，星期二有抽奖。当前仅作为备用入口。</p>
+            </div>
+            <div class="tags">
+              <span class="tag">团体运营</span>
+              <span class="tag">活动多</span>
+              <span class="tag">充值 2.5:10</span>
+            </div>
+            <div class="price-grid">
+              <div class="price-card">
+                <span>活动标签</span>
+                <strong>疯狂星期四</strong>
+              </div>
+              <div class="price-card">
+                <span>福利池</span>
+                <strong>1000 刀免费薅羊毛</strong>
+              </div>
+              <div class="price-card">
+                <span>充值比例</span>
+                <strong>2.5 : 10</strong>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="ghost-btn" href="https://ai.hctopup.com/register?aff=C7DGJEZLVJL4" target="_blank" rel="noreferrer">打开备用</a>
+              <button class="ghost-btn" type="button" data-copy="https://ai.hctopup.com/register?aff=C7DGJEZLVJL4">复制链接</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="note">
+        <span><strong>样板说明：</strong>这是一个纯静态 HTML 首页，后面可以直接继续补链接和分类。</span>
+        <span>更新于 2026-06-17</span>
+      </div>
+
+      <footer class="footer">可直接部署到 GitHub Pages</footer>
+    </main>
+
+    <script>
+      const planetStage = document.querySelector(".planet-stage");
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      async function startPlanet() {
+        if (prefersReducedMotion) return;
+        try {
+          const THREE = await import("https://unpkg.com/three@0.160.0/build/three.module.js");
+          const stage = planetStage;
+          const canvas = document.createElement("canvas");
+          stage.prepend(canvas);
+          stage.querySelector(".planet-fallback")?.remove();
+
+          const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+          const scene = new THREE.Scene();
+          const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+          camera.position.z = 5.2;
+
+          const group = new THREE.Group();
+          scene.add(group);
+
+          const sphereGeometry = new THREE.SphereGeometry(1.35, 48, 48);
+          const sphereMaterial = new THREE.MeshBasicMaterial({
+            color: 0x059669,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.22,
+          });
+          const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+          group.add(sphere);
+
+          const dotCount = 1300;
+          const positions = new Float32Array(dotCount * 3);
+          const colors = new Float32Array(dotCount * 3);
+          const gold = new THREE.Color(0xd97706);
+          const green = new THREE.Color(0x10b981);
+          const white = new THREE.Color(0xffffff);
+
+          for (let i = 0; i < dotCount; i++) {
+            const i3 = i * 3;
+            const radius = 1.42 + Math.random() * 0.22;
+            const phi = Math.acos(2 * Math.random() - 1);
+            const theta = 2 * Math.PI * Math.random();
+            positions[i3] = radius * Math.sin(phi) * Math.cos(theta);
+            positions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+            positions[i3 + 2] = radius * Math.cos(phi);
+
+            const mix = i % 3 === 0 ? gold : i % 3 === 1 ? green : white;
+            colors[i3] = mix.r;
+            colors[i3 + 1] = mix.g;
+            colors[i3 + 2] = mix.b;
+          }
+
+          const pointsGeometry = new THREE.BufferGeometry();
+          pointsGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+          pointsGeometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+
+          const pointsMaterial = new THREE.PointsMaterial({
+            size: 0.035,
+            transparent: true,
+            opacity: 0.9,
+            vertexColors: true,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending,
+          });
+          const points = new THREE.Points(pointsGeometry, pointsMaterial);
+          group.add(points);
+
+          const ringGeometry = new THREE.TorusGeometry(1.9, 0.03, 12, 180);
+          const ringMaterial = new THREE.MeshBasicMaterial({
+            color: 0x10b981,
+            transparent: true,
+            opacity: 0.3,
+          });
+          const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+          ring.rotation.x = 1.15;
+          ring.rotation.z = -0.55;
+          group.add(ring);
+
+          const ambient = new THREE.PointLight(0xffffff, 1.3, 20);
+          ambient.position.set(4, 2, 5);
+          scene.add(ambient);
+
+          const warm = new THREE.PointLight(0xd97706, 0.8, 20);
+          warm.position.set(-4, -2, 4);
+          scene.add(warm);
+
+          const resize = () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            renderer.setSize(width, height, false);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+          };
+
+          resize();
+          window.addEventListener("resize", resize, { passive: true });
+
+          const animate = (time) => {
+            const t = time * 0.001;
+            group.rotation.y = t * 0.18;
+            group.rotation.x = Math.sin(t * 0.35) * 0.08;
+            sphere.rotation.y = t * 0.28;
+            points.rotation.y = -t * 0.2;
+            ring.rotation.z = -0.55 + Math.sin(t * 0.5) * 0.08;
+
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate);
+          };
+
+          requestAnimationFrame(animate);
+        } catch (error) {
+          console.warn("Planet effect unavailable:", error);
+        }
+      }
+
+      startPlanet();
+
+      const copyButtons = document.querySelectorAll("[data-copy]");
+      copyButtons.forEach((button) => {
+        button.addEventListener("click", async () => {
+          const value = button.getAttribute("data-copy");
+          if (!value) return;
+          try {
+            await navigator.clipboard.writeText(value);
+            const prev = button.textContent;
+            button.textContent = "已复制";
+            setTimeout(() => {
+              button.textContent = prev;
+            }, 1200);
+          } catch {
+            window.prompt("复制下面的链接：", value);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

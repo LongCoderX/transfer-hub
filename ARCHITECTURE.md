@@ -25,7 +25,6 @@ src/
         └── index.astro       # 工具箱页
 
 data/
-├── posts.json                # 文章元数据（旧结构，后续可废弃）
 └── relays.json               # 中转站结构化数据
 
 public/
@@ -61,7 +60,7 @@ tsconfig.json
 `data/relays.json` 是单一日源，中转站聚合页和详情页都从它生成。
 新增中转站流程：
 1. 在 `data/relays.json` 里新增一条记录
-2. 创建 `go/<slug>/index.html` 跳转页
+2. 创建 `public/go/<slug>/index.html` 跳转页（含推广链接和自动跳转脚本）
 
 中转站详情页自动渲染。
 

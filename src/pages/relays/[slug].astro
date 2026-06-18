@@ -28,7 +28,7 @@ const { relay } = Astro.props;
     <h1>{relay.name}更适合先把 AI 用起来。</h1>
     <p class="lead">{relay.summary}</p>
     <div class="hero-actions">
-      <a class="btn btn-primary btn-large" href={`../../go/${relay.slug}/`}>进入注册</a>
+      <a class="btn btn-primary btn-large" href={`../../${relay.affiliatePath}`}>进入注册</a>
       <a class="btn" href="../../knowledge/domestic-ai-recharge/">先看避坑说明</a>
     </div>
   </section>
@@ -77,12 +77,10 @@ const { relay } = Astro.props;
       </div>
     </div>
     <ul class="list">
-      <li>模型、价格、倍率和可用性可能变化，使用前看平台实时信息。</li>
-      <li>建议先小额测试，不要一次性充值过多。</li>
-      <li>重要账号、密钥和敏感信息不要随意提交给不确定来源。</li>
+      {relay.cons.map(item => <li>{item}</li>)}
     </ul>
     <div class="hero-actions">
-      <a class="btn btn-primary btn-large" href={`../../go/${relay.slug}/`}>立即注册{relay.name}</a>
+      <a class="btn btn-primary btn-large" href={`../../${relay.affiliatePath}`}>立即注册{relay.name}</a>
     </div>
   </section>
 

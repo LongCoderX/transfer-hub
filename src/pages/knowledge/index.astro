@@ -1,9 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
-const posts = await getCollection('posts');
-const sorted = posts.sort((a, b) => b.data.date.localeCompare(a.data.date));
+const posts: CollectionEntry<'posts'>[] = await getCollection('posts');
+const sorted = posts.sort((a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.date.localeCompare(a.data.date));
 ---
 
 <Base
@@ -40,7 +40,7 @@ const sorted = posts.sort((a, b) => b.data.date.localeCompare(a.data.date));
             <h3>{post.data.title}</h3>
             <p>{post.data.summary}</p>
             <div class="tags">
-              {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+              {post.data.tags.map((tag: string) => <span class="tag">{tag}</span>)}
             </div>
           </a>
         ))

@@ -1,9 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
-const posts = await getCollection('posts');
-const latest = posts.sort((a, b) => b.data.date.localeCompare(a.data.date))[0];
+const posts: CollectionEntry<'posts'>[] = await getCollection('posts');
+const latest = posts.sort((a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.date.localeCompare(a.data.date))[0];
 ---
 
 <Base
@@ -72,7 +72,7 @@ const latest = posts.sort((a, b) => b.data.date.localeCompare(a.data.date))[0];
             <h3>{latest.data.title}</h3>
             <p>{latest.data.summary}</p>
             <div class="tags">
-              {latest.data.tags.map(tag => <span class="tag">{tag}</span>)}
+              {latest.data.tags.map((tag: string) => <span class="tag">{tag}</span>)}
             </div>
             <div class="hero-actions">
               <a class="btn btn-primary" href={`knowledge/${latest.slug}/`}>阅读全文</a>

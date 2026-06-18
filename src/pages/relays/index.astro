@@ -21,7 +21,7 @@ import relays from '../../../data/relays.json' with { type: 'json' };
     <div class="hero-actions">
       {
         relays.filter(r => r.visible).map(relay => (
-          <a class="btn btn-primary btn-large" href={`../go/${relay.slug}/`}>直接注册{relay.name}</a>
+          <a class="btn btn-primary btn-large" href={`../${relay.affiliatePath}`}>直接注册{relay.name}</a>
         ))
       }
       <a class="btn" href="#decision">先看看是否适合我</a>
@@ -67,7 +67,7 @@ import relays from '../../../data/relays.json' with { type: 'json' };
               {relay.tags.map(tag => <span class="tag">{tag}</span>)}
             </div>
             <div class="hero-actions">
-              <a class="btn btn-primary btn-large" href={`../go/${relay.slug}/`}>进入注册</a>
+              <a class="btn btn-primary btn-large" href={`../${relay.affiliatePath}`}>进入注册</a>
             </div>
           </aside>
         ))
@@ -77,13 +77,13 @@ import relays from '../../../data/relays.json' with { type: 'json' };
 
   {
     relays.filter(r => r.visible).map(relay => (
-      <section class="section" aria-labelledby="why-title">
+      <section class="section" aria-labelledby={`why-${relay.slug}-title`}>
         <div class="section-head">
           <div>
-            <h2 id="why-title">为什么先推荐{relay.name}</h2>
+            <h2 id={`why-${relay.slug}-title`}>为什么先推荐{relay.name}</h2>
             <p>不是说它适合所有人，而是它更适合"先解决能不能用"的第一步。</p>
           </div>
-          <a class="btn" href={`../relays/${relay.slug}/`}>查看完整详情</a>
+          <a class="btn" href={`../${relay.detailPath}`}>查看完整详情</a>
         </div>
 
         <div class="compare-list">

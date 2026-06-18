@@ -1,0 +1,126 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
+const latest = posts.sort((a, b) => b.data.date.localeCompare(a.data.date))[0];
+---
+
+<Base
+  title="AI 工具与中转站知识库 | 实用教程与工具箱"
+  description="一个面向国内用户的 AI、工具、中转站与 VPS 实用知识库。先讲清楚问题，再给出可直接使用的服务入口。"
+  current="home"
+  depth="./"
+>
+  <section class="hero home-hero">
+    <span class="eyebrow">
+      <span class="dot" aria-hidden="true"></span>
+      AI / 工具 / 中转站 / VPS
+    </span>
+    <h1>先把问题讲清楚，再给你能用的入口。</h1>
+    <p class="lead">
+      这里整理了国内用户使用 AI 的完整指南——从充值避坑到 API 中转选择，再到 VPS 部署和常用工具。每篇文章都附带可直接使用的服务入口，按需取用即可。
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary btn-large" href="knowledge/">进入知识库</a>
+      <a class="btn" href="tools/">查看我的工具箱</a>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="map-title">
+    <div class="section-head">
+      <div>
+        <h2 id="map-title">你能在这里找到什么</h2>
+        <p>每个板块都围绕一个实际问题展开，读完就有可用的方案。</p>
+      </div>
+      <span class="badge badge-primary">快速导航</span>
+    </div>
+
+    <div class="grid-3">
+      <a class="card card-strong link-card" href="knowledge/">
+        <span class="badge badge-primary">先读文章</span>
+        <h3>知识库</h3>
+        <p>AI 使用教程、充值避坑、中转站选择、VPS 部署——从最常见的卡点开始，帮你理清思路。</p>
+      </a>
+      <a class="card link-card" href="relays/">
+        <span class="badge badge-gold">推荐入口</span>
+        <h3>API / 中转</h3>
+        <p>国内用户可以测试的 AI API 入口，帮你跳过付款和渠道门槛，先用起来再说。</p>
+      </a>
+      <a class="card card-strong link-card" href="tools/">
+        <span class="badge badge-primary">工具汇总</span>
+        <h3>我的工具箱</h3>
+        <p>文章里提到的服务都集中在这里——入口、适合人群、注意事项，方便你按需查找。</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="latest-title">
+    <div class="section-head">
+      <div>
+        <h2 id="latest-title">最新知识</h2>
+        <p>从最常见的充值卡点到工具选择，每篇文章都面向一个真实问题。</p>
+      </div>
+      <a class="btn" href="knowledge/">全部文章</a>
+    </div>
+
+    <div class="grid-2">
+      {
+        latest && (
+          <article class="card card-strong">
+            <span class="badge badge-primary">{latest.data.tags[0] || '知识分享'}</span>
+            <h3>{latest.data.title}</h3>
+            <p>{latest.data.summary}</p>
+            <div class="tags">
+              {latest.data.tags.map(tag => <span class="tag">{tag}</span>)}
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href={`knowledge/${latest.slug}/`}>阅读全文</a>
+            </div>
+          </article>
+        )
+      }
+
+      <aside class="recommend-box">
+        <span class="badge badge-primary">读完文章后</span>
+        <h3>你可以在底部找到相关工具</h3>
+        <p>
+          每篇文章末尾都列出了对应的服务入口和适用场景说明——先读文章判断是否适合自己，再看工具箱里的推荐，不盲目也不浪费。
+        </p>
+        <div class="tags">
+          <span class="tag">先读后试</span>
+          <span class="tag">按需取用</span>
+          <span class="tag">适合再继续</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="route-title">
+    <div class="section-head">
+      <div>
+        <h2 id="route-title">如何使用这个站点</h2>
+        <p>三步走，不花冤枉钱，也不走冤枉路。</p>
+      </div>
+    </div>
+    <div class="compare-list">
+      <div class="compare-line">
+        <strong>① 先读文章</strong>
+        <span>找到你遇到的问题——充值困难、代充不放心、入口不稳定，文章会帮你理清判断标准。</span>
+      </div>
+      <div class="compare-line">
+        <strong>② 再看推荐</strong>
+        <span>文章底部有对应服务的入口和适用说明，先确认是否适合你的情况。</span>
+      </div>
+      <div class="compare-line">
+        <strong>③ 小额测试</strong>
+        <span>用真实任务试一次，确认速度、扣费和稳定性符合预期再继续，不合适就停。</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="note">
+    <span><strong>说明：</strong>本站提供 AI 使用指南和工具推荐，服务信息和价格请以平台实时规则为准。</span>
+    <span>更新于 2026-06-18</span>
+  </div>
+</Base>

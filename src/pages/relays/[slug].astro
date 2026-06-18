@@ -1,0 +1,93 @@
+---
+import Base from '../../layouts/Base.astro';
+import relays from '../../../data/relays.json' with { type: 'json' };
+
+export async function getStaticPaths() {
+  return relays
+    .filter(r => r.visible)
+    .map(relay => ({
+      params: { slug: relay.slug },
+      props: { relay },
+    }));
+}
+
+const { relay } = Astro.props;
+---
+
+<Base
+  title={`${relay.name}中转站详情 | 国内用户注册建议`}
+  description={`${relay.name}中转站详情页，说明适合人群、使用建议、注意事项和注册入口。`}
+  current="relays"
+  depth="../../"
+>
+  <section class="hero">
+    <span class="eyebrow">
+      <span class="dot" aria-hidden="true"></span>
+      适合先小额体验
+    </span>
+    <h1>{relay.name}更适合先把 AI 用起来。</h1>
+    <p class="lead">{relay.summary}</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary btn-large" href={`../../go/${relay.slug}/`}>进入注册</a>
+      <a class="btn" href="../../knowledge/domestic-ai-recharge/">先看避坑说明</a>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="fit-title">
+    <div class="section-head">
+      <div>
+        <h2 id="fit-title">适合谁</h2>
+        <p>如果你看到下面这些问题会点头，{relay.name}可以作为第一站先试。</p>
+      </div>
+      <span class="badge badge-primary">先判断是否匹配</span>
+    </div>
+    <ul class="list">
+      {relay.bestFor.map(item => <li><strong>{item}</strong></li>)}
+    </ul>
+  </section>
+
+  <section class="section" aria-labelledby="advice-title">
+    <div class="section-head">
+      <div>
+        <h2 id="advice-title">使用建议</h2>
+        <p>不要一上来投入太多，先确认它能不能解决你的真实需求。</p>
+      </div>
+    </div>
+    <div class="grid-3">
+      <article class="card">
+        <h3>先注册</h3>
+        <p>进入注册后先把账号准备好，不需要马上重投入。</p>
+      </article>
+      <article class="card">
+        <h3>小额验证</h3>
+        <p>用自己最常见的任务试一次，重点看速度、扣费和稳定性。</p>
+      </article>
+      <article class="card">
+        <h3>随用随停</h3>
+        <p>体验符合预期再继续，不合适就停，避免长期订阅压力。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="risk-title">
+    <div class="section-head">
+      <div>
+        <h2 id="risk-title">注意事项</h2>
+        <p>中转站信息会变化，页面只做注册前判断，最终以平台实时规则为准。</p>
+      </div>
+    </div>
+    <ul class="list">
+      <li>模型、价格、倍率和可用性可能变化，使用前看平台实时信息。</li>
+      <li>建议先小额测试，不要一次性充值过多。</li>
+      <li>重要账号、密钥和敏感信息不要随意提交给不确定来源。</li>
+    </ul>
+    <div class="hero-actions">
+      <a class="btn btn-primary btn-large" href={`../../go/${relay.slug}/`}>立即注册{relay.name}</a>
+    </div>
+  </section>
+
+  <div class="note">
+    <span><strong>说明：</strong>建议先小额测试，确认适合后再继续使用。</span>
+    <span>更新于 2026-06-17</span>
+  </div>
+</Base>

@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Base
+  title={`${post.data.title} | 知识分享`}
+  description={post.data.summary}
+  current="knowledge"
+  depth="../../"
+>
+  <article class="article">
+    <section class="hero">
+      <span class="eyebrow">
+        <span class="dot" aria-hidden="true"></span>
+        知识分享
+      </span>
+      <h1>{post.data.title}</h1>
+      <p class="lead">{post.data.summary}</p>
+    </section>
+
+    <section class="section">
+      <Content />
+
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-large" href="../../relays/suixiang/">查看随想推荐</a>
+        <a class="btn" href="../../relays/">返回聚合页</a>
+      </div>
+    </section>
+  </article>
+
+  <div class="note">
+    <span><strong>说明：</strong>知识文章负责解释问题，推荐页负责承接注册转化。</span>
+    <span>更新于 {post.data.date}</span>
+  </div>
+</Base>

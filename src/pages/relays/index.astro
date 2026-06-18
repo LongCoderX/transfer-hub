@@ -1,0 +1,134 @@
+---
+import Base from '../../layouts/Base.astro';
+import relays from '../../../data/relays.json' with { type: 'json' };
+---
+
+<Base
+  title="AI 中转站怎么选 | 国内用户推荐入口"
+  description="面向国内用户的 AI 中转站推荐页，帮你避开充值困难、代充不靠谱、渠道不稳定和长期订阅压力。"
+  current="relays"
+  depth="../"
+>
+  <section class="hero">
+    <span class="eyebrow">
+      <span class="dot" aria-hidden="true"></span>
+      给想先用起来的国内用户
+    </span>
+    <h1>别先纠结模型，先把充值和渠道搞定。</h1>
+    <p class="lead">
+      很多人不是不会用 AI，而是卡在付款、代充、入口不稳定和订阅压力上。这个页面先帮你判断自己遇到的是哪类问题，再给一个更适合先试的入口。
+    </p>
+    <div class="hero-actions">
+      {
+        relays.filter(r => r.visible).map(relay => (
+          <a class="btn btn-primary btn-large" href={`../go/${relay.slug}/`}>直接注册{relay.name}</a>
+        ))
+      }
+      <a class="btn" href="#decision">先看看是否适合我</a>
+    </div>
+  </section>
+
+  <section class="section" id="decision" aria-labelledby="decision-title">
+    <div class="section-head">
+      <div>
+        <h2 id="decision-title">你是不是也卡在这些地方</h2>
+        <p>如果下面有两三条说中了你，先选一个低门槛入口，比继续找资料、问渠道更有效。</p>
+      </div>
+      <span class="badge badge-primary">先判断需求</span>
+    </div>
+
+    <div class="decision-panel">
+      <div class="pain-grid" aria-label="国内用户常见困难">
+        <div class="pain-item">
+          <strong>充值总失败</strong>
+          <span>海外卡、账单地址、订阅扣费，每一步都可能卡住。</span>
+        </div>
+        <div class="pain-item">
+          <strong>代充不放心</strong>
+          <span>账号信息、价格、售后都不确定，出了问题很难追。</span>
+        </div>
+        <div class="pain-item">
+          <strong>入口不稳定</strong>
+          <span>每次都要重新找渠道、翻聊天记录、问朋友。</span>
+        </div>
+        <div class="pain-item">
+          <strong>不想月月订阅</strong>
+          <span>只是偶尔写作、总结、翻译，不想被长期费用绑住。</span>
+        </div>
+      </div>
+
+      {
+        relays.filter(r => r.visible).map(relay => (
+          <aside class="recommend-box" aria-label="推荐入口">
+            <span class="badge badge-primary">当前优先推荐</span>
+            <h3>{relay.name}</h3>
+            <p>{relay.summary}</p>
+            <div class="tags">
+              {relay.tags.map(tag => <span class="tag">{tag}</span>)}
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn-primary btn-large" href={`../go/${relay.slug}/`}>进入注册</a>
+            </div>
+          </aside>
+        ))
+      }
+    </div>
+  </section>
+
+  {
+    relays.filter(r => r.visible).map(relay => (
+      <section class="section" aria-labelledby="why-title">
+        <div class="section-head">
+          <div>
+            <h2 id="why-title">为什么先推荐{relay.name}</h2>
+            <p>不是说它适合所有人，而是它更适合"先解决能不能用"的第一步。</p>
+          </div>
+          <a class="btn" href={`../relays/${relay.slug}/`}>查看完整详情</a>
+        </div>
+
+        <div class="compare-list">
+          {
+            relay.bestFor.slice(0, 4).map((item, i) => (
+              <div class="compare-line">
+                <strong>{relay.pros[i] || `场景 ${i + 1}`}</strong>
+                <span>{item}</span>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="quiet-note">
+          建议先小额测试。模型、价格、倍率和稳定性都可能变化，请以平台实时信息为准。
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="section" aria-labelledby="path-title">
+    <div class="section-head">
+      <div>
+        <h2 id="path-title">建议你这样开始</h2>
+        <p>降低试错成本，比一次性找"完美方案"更现实。</p>
+      </div>
+    </div>
+    <div class="grid-3">
+      <article class="card">
+        <h3>1. 先注册</h3>
+        <p>先把账号准备好，确认入口能打开，流程能走通。</p>
+      </article>
+      <article class="card">
+        <h3>2. 小额验证</h3>
+        <p>用一个真实任务测试速度、扣费和稳定性，不要用空问题测试。</p>
+      </article>
+      <article class="card">
+        <h3>3. 适合再继续</h3>
+        <p>符合预期就继续，不合适就停，避免长期订阅压力。</p>
+      </article>
+    </div>
+  </section>
+
+  <div class="note">
+    <span><strong>说明：</strong>本站只做注册前判断和入口整理，最终使用规则以平台实时信息为准。</span>
+    <span>更新于 2026-06-17</span>
+  </div>
+</Base>

@@ -1,8 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
 import relays from '../../../data/relays.json' with { type: 'json' };
+import { getLastUpdated } from '../../utils/lastUpdated';
 
 const visible = relays.filter(r => r.visible);
+const lastUpdated = getLastUpdated();
 ---
 
 <Base
@@ -89,6 +91,6 @@ const visible = relays.filter(r => r.visible);
 
   <div class="note">
     <span><strong>说明：</strong>工具箱里的服务信息可能变化，请以服务商实时规则为准。</span>
-    <span>更新于 2026-06-18</span>
+    <span>更新于 {lastUpdated}</span>
   </div>
 </Base>

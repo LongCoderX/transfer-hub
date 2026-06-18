@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import relays from '../../../data/relays.json' with { type: 'json' };
+import { getLastUpdated } from '../../utils/lastUpdated';
 
 export async function getStaticPaths() {
   return relays
@@ -12,6 +13,7 @@ export async function getStaticPaths() {
 }
 
 const { relay } = Astro.props;
+const lastUpdated = getLastUpdated();
 ---
 
 <Base
@@ -86,6 +88,6 @@ const { relay } = Astro.props;
 
   <div class="note">
     <span><strong>说明：</strong>建议先小额测试，确认适合后再继续使用。</span>
-    <span>更新于 2026-06-17</span>
+    <span>更新于 {lastUpdated}</span>
   </div>
 </Base>

@@ -1,6 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
 import relays from '../../../data/relays.json' with { type: 'json' };
+import { getLastUpdated } from '../../utils/lastUpdated';
+
+const lastUpdated = getLastUpdated();
 ---
 
 <Base
@@ -129,6 +132,6 @@ import relays from '../../../data/relays.json' with { type: 'json' };
 
   <div class="note">
     <span><strong>说明：</strong>本站只做注册前判断和入口整理，最终使用规则以平台实时信息为准。</span>
-    <span>更新于 2026-06-17</span>
+    <span>更新于 {lastUpdated}</span>
   </div>
 </Base>

@@ -1,9 +1,11 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { getLastUpdated } from '../../utils/lastUpdated';
 
 const posts: CollectionEntry<'posts'>[] = await getCollection('posts');
 const sorted = posts.sort((a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.date.localeCompare(a.data.date));
+const lastUpdated = getLastUpdated();
 ---
 
 <Base
@@ -84,6 +86,6 @@ const sorted = posts.sort((a: CollectionEntry<'posts'>, b: CollectionEntry<'post
 
   <div class="note">
     <span><strong>说明：</strong>知识文章负责解释问题，工具箱负责承接服务入口。</span>
-    <span>更新于 2026-06-18</span>
+    <span>更新于 {lastUpdated}</span>
   </div>
 </Base>

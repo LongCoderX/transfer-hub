@@ -1,0 +1,16 @@
+[
+  {
+    "slug": "suixiang",
+    "name": "随想",
+    "status": "recommended",
+    "provider": "AI 中转站",
+    "summary": "适合国内用户先解决充值、渠道和使用门槛，先小额体验，按需使用，随用随停。",
+    "affiliatePath": "/go/suixiang/",
+    "detailPath": "/relays/suixiang/",
+    "tags": ["国内用户友好", "随用随停", "先小额测试"],
+    "bestFor": ["没有稳定充值渠道", "不想找代充", "不想被长期订阅绑住"],
+    "pros": ["充值门槛低", "适合新用户先试", "预算更可控"],
+    "cons": ["模型、价格和稳定性以平台实时规则为准", "建议先小额验证常用场景"],
+    "visible": true
+  }
+]

@@ -4,7 +4,16 @@ import path from 'node:path';
 
 const POSTS_DIR = './src/content/posts';
 
-function gitLastCommitDate(filePath: string): string | null {
+const SITE_FILES = [
+  'src/pages/index.astro',
+  'src/pages/knowledge/index.astro',
+  'src/pages/relays/index.astro',
+  'src/pages/relays/[slug].astro',
+  'src/pages/tools/index.astro',
+  'data/relays.json',
+];
+
+export function gitLastCommitDate(filePath: string): string | null {
   try {
     const output = execSync(`git log -1 --format=%cs -- "${filePath}"`, {
       encoding: 'utf-8',
@@ -22,16 +31,21 @@ export function getPostLastUpdated(fileName: string, fallback?: string): string 
 }
 
 export function getLastUpdated(): string {
-  const entries = fs.readdirSync(POSTS_DIR);
-  let latest = '';
+  const dates: string[] = [];
 
+  // Article files
+  const entries = fs.readdirSync(POSTS_DIR);
   for (const entry of entries) {
     if (!entry.endsWith('.md')) continue;
     const date = getPostLastUpdated(entry);
-    if (date && date > latest) {
-      latest = date;
-    }
+    if (date) dates.push(date);
   }
 
-  return latest;
+  // Site-level files
+  for (const file of SITE_FILES) {
+    const date = gitLastCommitDate(file);
+    if (date) dates.push(date);
+  }
+
+  return dates.sort().pop() ?? '';
 }
